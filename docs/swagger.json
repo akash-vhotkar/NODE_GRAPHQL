@@ -1,0 +1,611 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "Nexblock Server Swagger API DOCS",
+      "version": "1.0.0",
+      "title": "Nexblock BackEnd",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "akash@iotric.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "tags": [
+      {
+        "name": "NEXBLOCK-AUTH-API",
+        "description": "api related to auth. "
+      },
+      {
+        "name": "NEXBLOCK-REPORT-API",
+        "description": "api related to reports.  "
+      },
+      {
+        "name": "NEXBLOCK-SECONDARY-API",
+        "description": "api related to secondary admin"
+      }
+    ],
+    "servers": [
+      {
+        "url": "http://localhost:9000"
+      },
+      {
+        "url": "/api/v2"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT",
+          "in": "header"
+        }
+      },
+      "schemas":{
+        "forgetpassword": {
+          "type": "object",
+          "required": [
+            "email"
+          ],
+          "properties": {
+            "email": {
+              "type": "string"
+            }
+          }
+        },
+        "login": {
+          "type": "object",
+          "required": [
+            "email",
+            "password"
+          ],
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          }
+        },
+        "resetpassword": {
+          "type": "object",
+          "required": [
+            "repeat_password",
+            "password"
+          ],
+          "properties": {
+            "password": {
+              "type": "string"
+            },
+            "repeat_password": {
+              "type": "string"
+            }
+          }
+        },
+        "add-admin": {
+          "type": "object",
+          "required": [
+            "email"
+          ],
+          "properties": {
+            "email": {
+              "type": "string"
+            }
+          }
+        },
+        "setup-account": {
+          "type": "object",
+          "required": [
+            "email",
+            "repeat_password",
+            "password",
+            "first_name",
+            "last_name"
+          ],
+          "properties": {
+            "first_name": {
+              "type":"string"
+            },
+            "last_name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "repeat_password": {
+              "type": "string"
+            }
+          }
+        },
+        "_id": {
+          "type": "object",
+          "required": [
+            "_id"
+          ],
+          "properties": {
+            "_id": {
+              "in" : "query",
+              "type":"string"
+            }
+          }
+        },
+        "token": {
+          "type": "object",
+          "required": [
+            "token"
+          ],
+          "properties": {
+            "token": {
+              "in" : "query",
+              "type":"string"
+            }
+          }
+        }
+      }
+    },
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ],
+    "paths": {
+      "/api/v2/auth/login": {
+        "post": {
+          "tags": [
+            "NEXBLOCK-AUTH-API"
+          ],
+          "summary": "Nexblock Admin login",
+          "requestBody": {
+            "description": "Nexblock admin login where both primary and secondary admin can login",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/login"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/api/v2/auth/forget": {
+        "post": {
+          "tags": [
+            "NEXBLOCK-AUTH-API"
+          ],
+          "summary": "Nexblock Admin Reset password ",
+          "requestBody": {
+            "description": "Nexblock admin Reset password After login",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/forgetpassword"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/api/v2/auth/reset-password": {
+        "post": {
+          "tags": [
+            "NEXBLOCK-AUTH-API"
+          ],
+          "summary": "Nexblock Admin Reset password ",
+          "requestBody": {
+            "description": "Nexblock admin Reset password After login",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resetpassword"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/api/v2/auth/reset-password/:token": {
+        "post": {
+          "tags": [
+            "NEXBLOCK-AUTH-API"
+          ],
+          "summary": "Nexblock Admin Reset password ",
+          "requestBody": {
+            "description": "Nexblock admin Reset password Before login",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/resetpassword"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/api/v2/admin/add-admin": {
+        "post": {
+          "tags": [
+            "NEXBLOCK-SECONDARY-API"
+          ],
+          "summary": "Nexblock Add secondary admin",
+          "requestBody": {
+            "description": "Nexblock admin add secondary admin by entering the email ",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/add-admin"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/api/v2/admin/setup-account/:token": {
+        "post": {
+          "tags": [
+            "NEXBLOCK-SECONDARY-API"
+          ],
+          "summary": "Nexblock Secondary Account",
+          "requestBody": {
+            "description": "Nexblock admin these api is hitted when the secondary admin accept the request from primary admin",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/token"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/api/v2/admin/block/:_id": {
+        "post": {
+          "tags": [
+            "NEXBLOCK-SECONDARY-API"
+          ],
+          "summary": "Nexblock Admin block secondary admin",
+          "requestBody": {
+            "description": "Nexblock admin admin block secondary admin",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/_id"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/api/v2/admin/unblock/:_id": {
+        "post": {
+          "tags": [
+            "NEXBLOCK-SECONDARY-API"
+          ],
+          "summary": "Nexblock Admin unblock secondary admin",
+          "requestBody": {
+            "description": "Nexblock admin unblock secondary admin ",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/_id"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/api/v2/admin/profile": {
+        "put": {
+          "tags": [
+            "NEXBLOCK-AUTH-API"
+          ],
+          "summary": "Nexblock Admin update profile data",
+          "requestBody": {
+            "description": "Nexblock admin update profile data",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/login"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      },
+      "/api/v2/admin/profile-image": {
+        "put": {
+          "tags": [
+            "NEXBLOCK-AUTH-API"
+          ],
+          "summary": "Nexblock admin update profile image",
+          "requestBody": {
+            "description": "Nexblock admin update profile image",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/login"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Success response from server",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "boolean"
+                      },
+                      "data": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Validation error"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      }
+    }
+  
+  }
