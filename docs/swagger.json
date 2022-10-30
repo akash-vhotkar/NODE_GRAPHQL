@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.0",
     "info": {
-      "description": "Nexblock Server Swagger API DOCS",
+      "description": "NODEJS Server Swagger API DOCS",
       "version": "1.0.0",
-      "title": "Nexblock BackEnd",
+      "title": "NODEJS BackEnd",
       "termsOfService": "http://swagger.io/terms/",
       "contact": {
         "email": "akash@iotric.com"
@@ -15,15 +15,15 @@
     },
     "tags": [
       {
-        "name": "NEXBLOCK-AUTH-API",
+        "name": "NODEJS-AUTH-API",
         "description": "api related to auth. "
       },
       {
-        "name": "NEXBLOCK-REPORT-API",
+        "name": "NODEJS-REPORT-API",
         "description": "api related to reports.  "
       },
       {
-        "name": "NEXBLOCK-SECONDARY-API",
+        "name": "NODEJS-SECONDARY-API",
         "description": "api related to secondary admin"
       }
     ],
@@ -32,7 +32,7 @@
         "url": "http://localhost:9000"
       },
       {
-        "url": "/api/v2"
+        "url": "http://localhost:9000/api/v1/api-docs"
       }
     ],
     "components": {
@@ -159,11 +159,11 @@
       "/api/v2/auth/login": {
         "post": {
           "tags": [
-            "NEXBLOCK-AUTH-API"
+            "NODEJS-AUTH-API"
           ],
-          "summary": "Nexblock Admin login",
+          "summary": "NODEJS Admin login",
           "requestBody": {
-            "description": "Nexblock admin login where both primary and secondary admin can login",
+            "description": "NODEJS admin login where both primary and secondary admin can login",
             "required": true,
             "content": {
               "application/json": {
@@ -204,11 +204,11 @@
       "/api/v2/auth/forget": {
         "post": {
           "tags": [
-            "NEXBLOCK-AUTH-API"
+            "NODEJS-AUTH-API"
           ],
-          "summary": "Nexblock Admin Reset password ",
+          "summary": "NODEJS Admin Reset password ",
           "requestBody": {
-            "description": "Nexblock admin Reset password After login",
+            "description": "NODEJS admin Reset password After login",
             "required": true,
             "content": {
               "application/json": {
@@ -249,11 +249,11 @@
       "/api/v2/auth/reset-password": {
         "post": {
           "tags": [
-            "NEXBLOCK-AUTH-API"
+            "NODEJS-AUTH-API"
           ],
-          "summary": "Nexblock Admin Reset password ",
+          "summary": "NODEJS Admin Reset password ",
           "requestBody": {
-            "description": "Nexblock admin Reset password After login",
+            "description": "NODEJS admin Reset password After login",
             "required": true,
             "content": {
               "application/json": {
@@ -294,11 +294,11 @@
       "/api/v2/auth/reset-password/:token": {
         "post": {
           "tags": [
-            "NEXBLOCK-AUTH-API"
+            "NODEJS-AUTH-API"
           ],
-          "summary": "Nexblock Admin Reset password ",
+          "summary": "NODEJS Admin Reset password ",
           "requestBody": {
-            "description": "Nexblock admin Reset password Before login",
+            "description": "NODEJS admin Reset password Before login",
             "required": true,
             "content": {
               "application/json": {
@@ -339,11 +339,11 @@
       "/api/v2/admin/add-admin": {
         "post": {
           "tags": [
-            "NEXBLOCK-SECONDARY-API"
+            "NODEJS-SECONDARY-API"
           ],
-          "summary": "Nexblock Add secondary admin",
+          "summary": "NODEJS Add secondary admin",
           "requestBody": {
-            "description": "Nexblock admin add secondary admin by entering the email ",
+            "description": "NODEJS admin add secondary admin by entering the email ",
             "required": true,
             "content": {
               "application/json": {
@@ -384,11 +384,11 @@
       "/api/v2/admin/setup-account/:token": {
         "post": {
           "tags": [
-            "NEXBLOCK-SECONDARY-API"
+            "NODEJS-SECONDARY-API"
           ],
-          "summary": "Nexblock Secondary Account",
+          "summary": "NODEJS Secondary Account",
           "requestBody": {
-            "description": "Nexblock admin these api is hitted when the secondary admin accept the request from primary admin",
+            "description": "NODEJS admin these api is hitted when the secondary admin accept the request from primary admin",
             "required": true,
             "content": {
               "application/json": {
@@ -429,11 +429,11 @@
       "/api/v2/admin/block/:_id": {
         "post": {
           "tags": [
-            "NEXBLOCK-SECONDARY-API"
+            "NODEJS-SECONDARY-API"
           ],
-          "summary": "Nexblock Admin block secondary admin",
+          "summary": "NODEJS Admin block secondary admin",
           "requestBody": {
-            "description": "Nexblock admin admin block secondary admin",
+            "description": "NODEJS admin admin block secondary admin",
             "required": true,
             "content": {
               "application/json": {
@@ -474,11 +474,11 @@
       "/api/v2/admin/unblock/:_id": {
         "post": {
           "tags": [
-            "NEXBLOCK-SECONDARY-API"
+            "NODEJS-SECONDARY-API"
           ],
-          "summary": "Nexblock Admin unblock secondary admin",
+          "summary": "NODEJS Admin unblock secondary admin",
           "requestBody": {
-            "description": "Nexblock admin unblock secondary admin ",
+            "description": "NODEJS admin unblock secondary admin ",
             "required": true,
             "content": {
               "application/json": {
@@ -519,11 +519,11 @@
       "/api/v2/admin/profile": {
         "put": {
           "tags": [
-            "NEXBLOCK-AUTH-API"
+            "NODEJS-AUTH-API"
           ],
-          "summary": "Nexblock Admin update profile data",
+          "summary": "NODEJS Admin update profile data",
           "requestBody": {
-            "description": "Nexblock admin update profile data",
+            "description": "NODEJS admin update profile data",
             "required": true,
             "content": {
               "application/json": {
@@ -564,11 +564,11 @@
       "/api/v2/admin/profile-image": {
         "put": {
           "tags": [
-            "NEXBLOCK-AUTH-API"
+            "NODEJS-AUTH-API"
           ],
-          "summary": "Nexblock admin update profile image",
+          "summary": "NODEJS admin update profile image",
           "requestBody": {
-            "description": "Nexblock admin update profile image",
+            "description": "NODEJS admin update profile image",
             "required": true,
             "content": {
               "application/json": {
