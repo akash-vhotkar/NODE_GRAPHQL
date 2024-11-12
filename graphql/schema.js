@@ -1,3 +1,4 @@
+// schema for graphql added
 const schema = `
     type User {
         firstName :String!,
